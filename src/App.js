@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Form from './components/Form';
 import MoviesList from './components/MoviesList';
 import './App.css';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { useEffect,useState,useMemo } from 'react';
 
 function App() {
   const[movies,setMovies]=useState([])
+  const [modal , setmodal]= useState(false)
   // const dummyMovies = [
   //   {
   //     id: 1,
@@ -29,15 +30,23 @@ function App() {
     setMovies(response.data)
 
   }
+  const handleaddmovie=()=>{
+    setmodal(!modal)
+
+
+  }
 
   return (
     <React.Fragment>
+      {modal && <Form onAdd={handleaddmovie}/>}
       <section>
         <button onClick={()=>{handleButtonSubmit()}}>Fetch Movies</button>
+        <button onClick={()=>{handleaddmovie()}}>Add Movies</button>
       </section>
       <section>
         <MoviesList movies={movies} />
       </section>
+      
     </React.Fragment>
   );
 }
