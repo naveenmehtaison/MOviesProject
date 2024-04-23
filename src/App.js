@@ -3,7 +3,7 @@ import React from 'react';
 import MoviesList from './components/MoviesList';
 import './App.css';
 import axios from 'axios';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useMemo } from 'react';
 
 function App() {
   const[movies,setMovies]=useState([])
