@@ -25,7 +25,7 @@ function App() {
   useEffect(handleButtonSubmit,[])
   async function handleButtonSubmit(){
  
-    const response = await axios.get('https://crudcrud.com/api/d8eecc9113194f9cafaeda9696f88951/movieee')
+    const response = await axios.get('https://crudcrud.com/api/9b7c25395d8245519155f71b66e4b2b0/movieee')
     console.log(response.data)
     setMovies(response.data)
 
@@ -35,16 +35,31 @@ function App() {
 
 
   }
+  async function handleaddmovie2(data){
+    setmodal(!modal)
+    const response = await axios.post('https://crudcrud.com/api/9b7c25395d8245519155f71b66e4b2b0/movieee',data)
+    setMovies([...movies,response.data])
+    
+
+  }
+  async function handledel(data){
+    console.log(data)
+    const response = await axios.delete(`https://crudcrud.com/api/9b7c25395d8245519155f71b66e4b2b0/movieee/${data}`)
+    const response2 = await axios.get('https://crudcrud.com/api/9b7c25395d8245519155f71b66e4b2b0/movieee')
+    setMovies(response2.data)
+
+  }
+
 
   return (
     <React.Fragment>
-      {modal && <Form onAdd={handleaddmovie}/>}
+      {modal && <Form onAdd={handleaddmovie2} />}
       <section>
         <button onClick={()=>{handleButtonSubmit()}}>Fetch Movies</button>
         <button onClick={()=>{handleaddmovie()}}>Add Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        <MoviesList  ondel={handledel} movies={movies} />
       </section>
       
     </React.Fragment>

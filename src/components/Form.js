@@ -5,12 +5,12 @@ const Form=(props)=>{
         
         event.preventDefault()
         const obj = {
-            tittle:event.target.elements.tittle.value,
-            openingtext:event.target.elements.open.value,
-            date:event.target.elements.date.value
+            title:event.target.elements.tittle.value,
+            openingText:event.target.elements.open.value,
+            releaseDate:event.target.elements.date.value
         }
         console.log(obj)
-        props.onAdd()
+        props.onAdd(obj)
 
     }
     return(
